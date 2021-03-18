@@ -6,19 +6,32 @@
     <meta http-equiv="X-UA-Compatible" content="ie-edge">
     <link rel="reset" type="text/css" href="Assets/reset.css"/>
     <link rel="stylesheet" type="text/css" href="Assets/style.css"/>
-    <title>Coding Quiz</title>
+    <title>Coding Quiz Home Page</title>
 </head>
 <body>
     <header>
-
+        <h1>Coding Quiz</h1>
+        <p>
+            Try to answer the following code-related questions wtihin the time limit. 
+           <br> Keep in mind that incorrect answers will penalize your score and time by 10 seconds.
+        </p>
     </header>
     
-    <main>
-        <h1>Coding Quiz Challenge</h1>
-        <p>
-            Try to answer the following code-related questions wtihin the time limit. Keep in mind that incorrectanswers will penalize your score and time by 10 seconds.
-        </p>
-        
+    <main class="container">
+        <div id="question-container" class="hide">
+            <div id="question">Coding Quiz Challenge</div>
+            <div id="answer-buttons" class="btn-grid">
+                <button class="btn">Answer 1</button>
+                <button class="btn">Answer 1</button>
+                <button class="btn">Answer 1</button>
+                <button class="btn">Answer 1</button>
+            </div>
+        </div>
+        <div class="controls">
+            <button id="start-btn" class="start-btn btn">Start</button>
+            <button id="next-btn" class="next-btn btn hide">Next</button>
+
+        </div>
     </main>
 
     <script src="Assets/script.js"></script>
