@@ -21,7 +21,7 @@ const reloadBtn = document.getElementById("reload-btn");
 var counter = 60;
 var interval;
 
-// Variables for keeping score and seeing high scores
+// Variables for scoring
 const mostRecentScore = localStorage.getItem("mostRecentScore");
 const initialsEl = document.getElementById("initials");
 const highScoresEl = document.getElementById("highScoresEl");
@@ -86,17 +86,19 @@ function startQuiz() {
     startButton.classList.add("hide");
     introEl.classList.add("hide");
 
-    // Shuffles the order of the questions
+    // Shuffles the order of the questions - gives us a randomly chosen number in the array (50% of the time will be above 0 and 50% of the time will be below zero)
+
     shuffledQuestions = questions.sort(() => Math.random() - 0.5);
+    // starting on very first question so currentQuestionIndex is set to 0
     currentQuestionIndex = 0;
-    //shows the question container element
+    // reveals the question container element
     questionContainerEl.classList.remove("hide");
 
     // Displays first question
     setNextQuestion();
 }
 
-// Clears the answer boxes and shows the next question
+// Shows the next question
 function setNextQuestion() {
     resetState();
     showQuestion(shuffledQuestions[currentQuestionIndex]);
@@ -138,7 +140,7 @@ function correctAnswer() {
 }
 
 function wrongAnswer() {
-    // Reduces remainign time by 10 seconds for incorrect answers
+    // Reduces remaining time by 10 seconds for incorrect answers
     counter -= 10;
     // Displays "Wrong!" and changes background color of element - red for wrong
     controlsEl.innerHTML = "<h5>Wrong!</h5>";
@@ -151,6 +153,7 @@ function selectAnswer(event) {
     // Identifies which answer is selected
     const selectedButton = event.target;
     const correct = selectedButton.dataset.correct;
+    
 
     // Checks accuracy of answer and provides the corresponding response
     if (correct) {
