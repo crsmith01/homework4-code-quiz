@@ -1,23 +1,23 @@
-// Global variables
-
+// Globally scoped variables
 
 // Variables for actually taking the quiz
-const highscoreBtn = document.getElementById("highscore-btn");
-const clearBtn = document.getElementById("clear-btn");
-const reloadBtn = document.getElementById("reload-btn");
-const showTimer = document.getElementById("timeRemaining");
 const startButton = document.getElementById("start-btn");
-const questionContainerEl = document.getElementById("question-container");
-const questionEl = document.getElementById("question");
-const answerBtnsEl = document.getElementById("answer-btns");
-const controlsEl = document.getElementById("controls");
 const introEl = document.getElementById("intro");
-const gameOverEl = document.getElementById("gameOverEl");
-const scoreDisplay = document.getElementById("score");
+const questionEl = document.getElementById("question");
+const questionContainerEl = document.getElementById("question-container");
 let shuffledQuestions;
 let currentQuestionIndex;
 
-// Variables for the timer
+const answerBtnsEl = document.getElementById("answer-btns");
+const controlsEl = document.getElementById("controls");
+const showTimer = document.getElementById("timeRemaining");
+const endGameEl = document.getElementById("endGameEl");
+const scoreDisplay = document.getElementById("score");
+const highscoreBtn = document.getElementById("highscore-btn");
+const clearBtn = document.getElementById("clear-btn");
+const reloadBtn = document.getElementById("reload-btn");
+
+// Variables for the timer (60 seconds provided at the start - function 
 var counter = 60;
 var interval;
 
@@ -27,10 +27,9 @@ const initialsEl = document.getElementById("initials");
 const highScoresEl = document.getElementById("highScoresEl");
 const highScoresList = document.getElementById("highScoresList");
 var storedHighScores = JSON.parse(localStorage.getItem("highScores"));
-const maxHighScores = 5;
+const maxHighScores = 10;
 var highScores = [];
 let score = 0;
-
 
 // Creating array of questions, each of which has an array of answers
 const questions = [
@@ -81,8 +80,6 @@ const questions = [
     },
 ];
 
-// Functions required for playing the game
-
 // Starting the quiz and timer
 function startQuiz() {
     startTimer();
@@ -105,7 +102,7 @@ function setNextQuestion() {
     showQuestion(shuffledQuestions[currentQuestionIndex]);
 }
 
-// Shows the questions and answers in the correct elements and checks for correct answer
+// Shows the questions and answers and then checks for correct answers
 function showQuestion(question) {
     // Shows the question value based on the question key within the currently indexed question
     questionEl.innerText = question.question;
@@ -125,7 +122,7 @@ function showQuestion(question) {
     });
 }
 
-// Clears the answer boxes
+// Clears the answer buttons in preparation for the next question (if there is one)
 function resetState() {
     while (answerBtnsEl.firstChild) {
         answerBtnsEl.removeChild(answerBtnsEl.firstChild);
@@ -135,15 +132,15 @@ function resetState() {
 function correctAnswer() {
     // Adds 10 points to the score
     score += 10;
-    // Displays "Correct!" and changes background color of element 
+    // Displays "Correct!" and changes background color of element - green for corret
     controlsEl.innerHTML = "<h5>Correct!</h5>";
     controlsEl.style.backgroundColor = "hsl(145, 100%, 50%)";
 }
 
 function wrongAnswer() {
-    // Reduces timer by 10 seconds for incorrect answers
+    // Reduces remainign time by 10 seconds for incorrect answers
     counter -= 10;
-    // Displays "Wrong!" and changes background color of element
+    // Displays "Wrong!" and changes background color of element - red for wrong
     controlsEl.innerHTML = "<h5>Wrong!</h5>";
     controlsEl.style.backgroundColor = "hsl(0, 100%, 50%)";
 }
@@ -169,12 +166,12 @@ function selectAnswer(event) {
         setNextQuestion();
     } else {
         // Ends quiz if there are no remaining questions
-        gameOver();
+        endGame();
     }
 }
 
 function startTimer() {
-    // Creates and operates time (decreased 1 second at a time)
+    // Creates and operates timer (decreases 1 second at a time)
     interval = setInterval(function () {
         counter--;
         if (counter >= 0) {
@@ -182,23 +179,24 @@ function startTimer() {
         }
         if (counter <= 0) {
             clearInterval(interval);
-            gameOver();
+            endGame();
         }
     }, 1000);
 }
 
-function gameOver() {
+
+function endGame() {
     // Ends game
     questionContainerEl.classList.add("hide");
     controlsEl.classList.add("hide");
-    gameOverEl.classList.remove("hide");
+    endGameEl.classList.remove("hide");
     scoreDisplay.innerText = score;
     clearInterval(interval);
 }
 
 function showHighScores() {
      // Utilizes local storage to save user's information.
-    gameOverEl.classList.add("hide");
+    endGameEl.classList.add("hide");
     startButton.classList.add("hide");
     questionContainerEl.classList.add("hide");
     controlsEl.classList.add("hide");
@@ -209,24 +207,24 @@ function showHighScores() {
     renderHighScore();
 }
 
-function init() {
-    // Get stored highscores from localStorage
-    // Parsing the JSON string to an object
+function init() { 
+    // Get stored high scores from local storage
+    // Parsing JSON string to an object
     var storedHighScores = JSON.parse(localStorage.getItem("highScores"));
 
-    // If todos were retrieved from localStorage, update the todos array to it
+    // Updates array after going to local storage 
     if (storedHighScores !== null) {
         highScores = storedHighScores;
     }
 }
 
 function storeHighScore() {
-    // Stringifies and sets "highscore" key in localStorage to array
+    // Stringifies highscore key for local storage array
     localStorage.setItem("highScores", JSON.stringify(highScores));
 }
 
 function renderHighScore() {
-    //Creates a new list item for each high score
+    // Uses jQuery to create a new list item for each high score
     highScoresList.innerHTML = highScores
         .map((highScores) => {
             return `<li>${highScores.initials}: ${highScores.score}</li>`;
@@ -240,7 +238,7 @@ function clearHighScores() {
 }
 
 
-// Event listeners 
+// Additional event listeners 
 startButton.addEventListener("click", startQuiz);
 highscoreBtn.addEventListener("click", showHighScores);
 clearBtn.addEventListener("click", clearHighScores);
@@ -251,7 +249,7 @@ initialsForm.addEventListener("submit", function (e) {
     e.preventDefault();
     init();
 
-    // Adding high score to array
+    // Adds high score to array (trim to make whole number)
     const highscore = {
         initials: initialsEl.value.trim(),
         score: score.toString(),
@@ -259,7 +257,7 @@ initialsForm.addEventListener("submit", function (e) {
     highScores.push(highscore);
     initialsEl.value = "";
 
-    // Ranks high scores and capping at 10 scores
+    // Ranks high scores and caps at 10 scores
     highScores.sort((a, b) => b.score - a.score);
 
     highScores.splice(10);
@@ -268,6 +266,6 @@ initialsForm.addEventListener("submit", function (e) {
     storeHighScore();
     renderHighScore();
 
-    gameOverEl.classList.add("hide");
+    endGameEl.classList.add("hide");
     highScoresEl.classList.remove("hide");
 });

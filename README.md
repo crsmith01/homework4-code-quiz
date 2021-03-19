@@ -26,6 +26,13 @@ GIVEN I am taking a code quiz:
 
 ## Mock-Up
 
-The following animation demonstrates the application functionality:
+The following screenshots demonstrate the application's functionality:
 
-![A user clicks through an interactive coding quiz, then enters initials to save the high score before resetting and starting over.](./Assets/04-web-apis-homework-demo.gif)
+assets/images/Screenshot1.png
+assets/images/Screenshot2.png
+assets/images/Screenshot3.png
+assets/images/Screenshot4.png
+assets/images/Screenshot5.png
+assets/images/Screenshot6.png
+
+## Link to Deployed Application
