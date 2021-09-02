@@ -1,11 +1,14 @@
-var username = document.querySelector("#username");
-var saveScoreBtn = document.querySelector("#saveScoreBtn");
-var finalScore = document.querySelector("#finalScore");
-var mostRecentScore = document.querySelector("#mostRecentScore");
+// Globally scoped variables
+const username = document.querySelector("#username");
+const saveScoreBtn = document.querySelector("#saveScoreBtn");
+const finalScore = document.querySelector("#finalScore");
+const mostRecentScore = document.querySelector("#mostRecentScore");
 
-var highScores = JSON.parse(localStorage.getItem("highScores")) || []
+// local storage to get the high score
+const highScores = JSON.parse(localStorage.getItem("highScores")) || []
 
-var MAX_HIGH_SCORES = 5;
+// only want to show 5 highest scores
+const MAX_HIGH_SCORES = 5;
 
 
 finalScore.innerText = mostRecentScore;
@@ -14,13 +17,15 @@ username.addEventListener("keyup", () => {
     saveScoreBtn.disables = !username.value
 })
 
-saveHighScore = e => {
-    e.preventDefault()
+//  function to save the high score to local storage
+saveHighScore = event => {
+    event.preventDefault()
 
-    var score = {
+    let score = {
         score: mostRecentScore,
         name: username.value
     }
+    // push method to add that most recent score to the high score list
     highScores.push(score);
 
     highScores.sort((a,b) => {
@@ -29,6 +34,8 @@ saveHighScore = e => {
 
     highScores.splice(5);
 
+    // set the high school to local storage - used stringify 
     localStorage.setItem("highScores", JSON.stringify(highScores))
-    window.location.assign("/")
+    // assign method to take us to the next appropriate page
+    location.assign("/")
 }

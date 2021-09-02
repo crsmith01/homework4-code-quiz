@@ -5,6 +5,7 @@ const startButton = document.getElementById("start-btn");
 const introEl = document.getElementById("intro");
 const questionEl = document.getElementById("question");
 const questionContainerEl = document.getElementById("question-container");
+// used let because these will not remain the same throughout 
 let shuffledQuestions;
 let currentQuestionIndex;
 
@@ -12,7 +13,7 @@ const answerBtnsEl = document.getElementById("answer-btns");
 const controlsEl = document.getElementById("controls");
 const showTimer = document.getElementById("timeRemaining");
 const endGameEl = document.getElementById("endGameEl");
-const scoreDisplay = document.getElementById("score");
+const displayScore = document.getElementById("score");
 const highscoreBtn = document.getElementById("highscore-btn");
 const clearBtn = document.getElementById("clear-btn");
 const reloadBtn = document.getElementById("reload-btn");
@@ -193,7 +194,7 @@ function endGame() {
     questionContainerEl.classList.add("hide");
     controlsEl.classList.add("hide");
     endGameEl.classList.remove("hide");
-    scoreDisplay.innerText = score;
+    displayScore.innerText = score;
     clearInterval(interval);
 }
 
@@ -211,7 +212,7 @@ function showHighScores() {
 }
 
 function init() { 
-    // Get stored high scores from local storage
+    // Function to get the stored high scores from local storage
     // Parsing JSON string to an object
     var storedHighScores = JSON.parse(localStorage.getItem("highScores"));
 

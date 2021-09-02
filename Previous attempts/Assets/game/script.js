@@ -1,24 +1,25 @@
-var startButton = document.getElementById("#start-btn");
-var nextButton = document.getElementById("#next-btn");
-var questionContainerEl = document.getElementById("#question-container");
-var questionEl = document.getElementById("#question");
-var answerButtonsEl = document.getElementById("#answer-buttons");
+const startButton = document.getElementById("#start-btn");
+const nextButton = document.getElementById("#next-btn");
+const questionContainerEl = document.getElementById("#question-container");
+const questionEl = document.getElementById("#question");
+const answerButtonsEl = document.getElementById("#answer-buttons");
 
 // sets both to defualt of undefined, which works for us here
-var shuffledQuestions, currentQuestionIndex;
+const shuffledQuestions, currentQuestionIndex;
 
 // Timer
-var counter = 60;
-var interval;
+const counter = 60;
+const interval;
 
 // Event listeners
+// button to start the quiz
 startButton.addEventListener("click", startQuiz);
-
+// button to go to the next question
 nextButton.addEventListener("click", () => {
     currentQuestionIndex++;
     setNextQuestion();
 })
-
+// for high scores
 highScoreBtn.addEventListener("click", showHighScores);
 clearBtn.addEventListener("click", clearHighScores);
 reloadBtn.addEventListener("click", function () {
@@ -28,7 +29,7 @@ reloadBtn.addEventListener("click", function () {
 
 // function starts the game when start button is pressed
 function startQuiz() {
-    console.log("Started");
+    // console.log("Started");
     startButton.classList.add("hide");
     // gives us a randomly chosen number in the array (50% of the time will be above 0 and 50% of the time will be below zero)
     shuffledQuestions = questions.sort(() => Math.random() - 0.5);
@@ -38,7 +39,7 @@ function startQuiz() {
     setNextQuestion();
 }) 
 
-// funciton to set next question when next button is clicked
+// function to set next question when next button is clicked
 function setNextQuestion() {
     resetState();
     showQuestion(shuffledQuestions[currentQuestionIndex]);
@@ -99,7 +100,7 @@ function clearStatusClass(element) {
 
 
 // Creating array of questions, each of which has an array of answers
-var questions = [
+let questions = [
     {
         question: "Commonly used data types DO NOT include:",
         answers: [
