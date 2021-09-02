@@ -1,5 +1,9 @@
 # homework4-code-quiz
 
+## My Task
+
+My task this week was to build a timed coding quiz with multiple-choice questions. This app runs in the browser and features dynamically updated HTML and CSS powered by JavaScript code that I wrote. Additionally, it has a clean, polished, and responsive user interface.
+
 ## User Story
 
 ```
@@ -28,12 +32,24 @@ GIVEN I am taking a code quiz:
 
 The following screenshots demonstrate the application's functionality:
 
-assets/images/Screenshot1.png
-assets/images/Screenshot2.png
-assets/images/Screenshot3.png
-assets/images/Screenshot4.png
-assets/images/Screenshot5.png
-assets/images/Screenshot6.png
+1.  Landing page
+![Landing page](/assets/images/Screenshot1.png)
+
+2. Question with answers
+![Question](/assets/images/Screenshot2.png)
+
+3. Button changes green when question is answered correctly.
+![Correct answer](/assets/images/Screenshot3.png)
+
+4. Button changes red when question is answered incorrectly.
+![Wrong answer](/assets/images/Screenshot4.png)
+
+5. User is invited to save their initials to add to the score board once they reach the end of the quiz.
+![End of game, enter initials to save high score](/assets/images/Screenshot5.png)
+
+6. High scores list
+![View high scores](/assets/images/Screenshot6.png)
 
 ## Link to Deployed Application
-https://crsmith01.github.io/homework4-code-quiz/
+
+Click [here](https://crsmith01.github.io/homework4-code-quiz/) to view the deployed application.
