@@ -33,7 +33,7 @@ GIVEN I am taking a code quiz:
 The following screenshots demonstrate the application's functionality:
 
 1.  Landing page
-[Landing page](/assets/images/Screenshot1.png)
+![Landing page](./assets/images/Screenshot1.png)
 
 2. Question with answers
 ![Question](/assets/images/Screenshot2.png)
