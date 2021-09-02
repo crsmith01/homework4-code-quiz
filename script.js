@@ -37,9 +37,9 @@ const questions = [
     {
         question: "Commonly used data types DO NOT include:",
         answers: [
-            {text: "Alerts", correct: true},
             {text: "Strings", correct: false},
             {text: "Numbers", correct: false},
+            {text: "Alerts", correct: true},
             {text: "Booleans", correct: false}
         ],
     },
@@ -55,17 +55,17 @@ const questions = [
     {
         question: "Arrays in JavaScript can be used to store:",
         answers: [
-            {text: "All of the above", correct: true},
             {text: "Numbers and strings", correct: false},
             {text: "Other arrays", correct: false},
-            {text: "Booleans", correct: false}
+            {text: "Booleans", correct: false},
+            {text: "All of the above", correct: true},
         ],
     },
     {
         question: "String values must be enclosed within _______ when being assigned to variables.",
         answers: [
-            {text: "Quotation marks", correct: true},
             {text: "Curly brackets", correct: false},
+            {text: "Quotation marks", correct: true},
             {text: "Commas", correct: false},
             {text: "Parentheses", correct: false}
         ],
